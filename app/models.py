@@ -9,7 +9,7 @@ class Posts(db.Model):
     __searchable__  = ['title', 'content']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    content = db.Column(db.Text(80000))
+    content = db.Column(db.String(8000))
     youtube_link = db.Column(db.String(30))
     image_path = db.Column(db.String(100))
     posted_time = db.Column(db.DateTime, default=datetime.utcnow, index=True)
@@ -27,7 +27,7 @@ class Posts(db.Model):
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text(800))
+    content = db.Column(db.String(800))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     parent_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
 
@@ -44,7 +44,7 @@ class Comment(db.Model):
 
 class Replies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text(800))
+    content = db.Column(db.String(800))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     parent_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=False)
     

@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Prices
+{% endblock %}
+
+{% block main %}
+
+<pre>
+
+</pre>
+
+  <div class="demo">
+        <div class="container">
+            <div class="row text-center">
+                <h1 class="heading-title">Consultation Room Pricing</h1>
+                
+            </div>
+            <div class="row">
+
+                {% for consultation in consultations %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="pricingTable">
+                        <div class="pricingTable-header">
+                            <span class="heading">
+                                <h3>{{consultation.title}}</h3>
+                            </span>
+                            <span class="price-value"><i class="fa fa-gbp"></i><span>{{consultation.price}}</span></span>
+                            <span class="subtitle">Lorem ipsum dolor sit </span>
+                        </div>
+
+                        <div class="pricingContent">
+                            <ul>
+                                <li><b>50</b> Place holder</li>
+                                <li><b>50</b> Place holder</li>
+                                <li><b>50</b> Place holder</li>
+                                <li><b>50</b> Place holder</li>
+                                <li><b>50</b> Place holder</li>
+                            </ul>
+                        </div><!-- /  CONTENT BOX-->
+
+                        <div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+                           
+                            <a href="{{url_for('main.checkout', consultation_id=consultation.id)}}"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-small.png" alt="Check out with PayPal" /></a>
+                        </div><!-- BUTTON BOX-->
+                    </div>
+                </div>
+
+                {% endfor %}
+
+             
+            </div>
+        </div>
+
+        
+    </div>
+
+
+    
+
+    {% endblock %}

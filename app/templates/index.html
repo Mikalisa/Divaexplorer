@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+		
+<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="static/img/header-bg.jpg">
+				<div class="overlay-bg overlay"></div>
+				<div class="container">
+					<div class="row fullscreen">
+						<div class="banner-content d-flex align-items-center col-lg-12 col-md-12">
+							<div ">
+                                   
+								<h2 style="color: #BF3EFF;">Just because you look good,
+								</h2> <h2 style="color: #BF5FFF;"> doesn't mean you feel good inside</h2>
+								
+								
+							</div>
+						</div>	
+																	
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+			
+
+
+        <!--Start of welcome section-->
+        <section id="welcome">
+			
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="wel_header">
+                            <h2>welcome to Divaexplorer</h2>
+                            <p>placeholderplaceholderplaceholderplaceholderplaceholder. Get our services like</p>
+                        </div>
+                    </div>
+                </div>
+				<!--End of row-->
+				
+                <div style="position: absolute; left: 20%;" class="row">
+
+					
+                    <div class="col-md-3">
+                        <div class="item">
+                            <div class="single_item">
+                                <div class="item_list">
+                                    <a href="/consultaion_room"><div class="welcome_icon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div></a>
+                                    <h4>consultation room</h4>
+                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of col-md-3-->
+                    <div class="col-md-3">
+                        <div class="item">
+                            <div class="single_item">
+                                <div class="item_list">
+                                    <a href="/news"> <div class="welcome_icon">
+                                        <i  class="fas fa-blog"></i>
+                                    </div></a>
+                                    <h4 >Blog</h4>
+                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of col-md-3-->
+                    <div class="col-md-3">
+                        <div class="item">
+                            <div class="single_item">
+                                <div class="item_list">
+                                    <div class="welcome_icon">
+                                        <i class="fab fa-product-hunt"></i>
+                                    </div>
+                                    <h4>products</h4>
+                                    <p>Coming soon!</p>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+
+					
+			
+                </div>
+                <!--End of row-->
+            </div>
+            <!--End of container-->
+        </section>
+		<!--end of welcome section-->
+		
+		<pre>
+
+
+
+			
+		</pre>
+
+	
+		
+			<!-- Start Blog posts Area -->
+			<section class="fashion-area section-gap" id="fashion">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Latest Blog Posts</h1>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="row">
+						{% for post in posts %}
+						<div class="col-lg-3 col-md-6 single-fashion">
+							<img class="img-fluid" src="static/img/asset/l3.jpg" alt="">
+
+				
+
+							<p class="date">{{post.posted_time.strftime('%d')}} {{post.posted_time.strftime('%B')[:3]}} {{post.posted_time.strftime('%Y')}}</p>
+							<h4><a href="{{url_for('main.post', post_id=post.id)}}">{{ post.title }}</a></h4>
+							<p style="width: 200px; white-space: nowrap; overflow:hidden;text-overflow: ellipsis;">
+								{{ post.content }}
+							</p>
+							<div class="meta-bottom d-flex justify-content-between">
+					
+							</div>									
+						</div>
+
+						{% endfor %}
+						
+					</div>
+				</div>	
+			</section>
+			<!-- End fashion Area -->
+
+
+			
+	
+			
+			
+{% endblock %}

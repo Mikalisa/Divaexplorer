@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+
+
+<div style="padding: 100px 0;" class="rows">
+    <div class="col-75">
+      <div class="containers">
+        
+  
+          <div class="row">
+            <div class="col-50">
+
+              {% if current_user.is_authenticated %}
+              
+              <form name="topaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" value="_xclick" name="cmd"/>
+                <input type="hidden" name="custom" value="{{session['username']}}"/>
+                <input type="hidden" name="business" value="{{paypal_account}}">
+                <input type="hidden" name="item_name" value="{{consultation.title}}">
+                <input type="hidden" name="item_number" value="500">
+                <input type="hidden" name="no_shipping" value="1">
+                <input type="hidden" name="amount" value="{{consultation.price}}" />
+                <input type="hidden" name="currency_code" value="GBP" />
+                <input type="hidden" name="p3" value="1">
+                <input type="hidden" name="t3" value="M">
+                <input type="hidden" name="src" value="1">
+                <input type="hidden" name="sra" value="1">
+                <input type="hidden" name="return" value="http://divaexplorer-tvj.co.uk/success/">
+                <input type="hidden" name="notify_url" value="http://divaexplorer-tvj.co.uk/ipn">
+                <input type="hidden" name="cancel_return" value="http://divaexplorer-tvj.co.uk/{{consultation.id}}">
+                
+         
+                <button  type="submit" name="submit"><img class="paypal_button" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" /></button>
+
+            </form>	
+
+            {% else %}
+
+            
+
+            <p>You need to <strong>log in first</strong> to pay.</p>
+
+            <a  class="btn btn-outline-dark" href="/login" role="button" style="text-transform:none;width: 200px;">
+              <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+              Login with Google
+            </a>
+
+            {% endif %}
+
+                  <hr>
+                  <p>Once the payment procceeded, We will contact you shortly to continue </p>
+                  <p>Once the payment procceeded, We will contact you shortly to continue </p>
+                  <p>By clicking the "Confirm Subscription" button, you agree to the total price of £{{consultation.price}}</p>
+              
+            </div>
+  
+          
+  
+          </div>
+  
+      </div>
+    </div>
+  
+    <div class="col-25">
+      <div class="containers">
+        <h4>Cart
+          <span class="price" style="color:black">
+            <i class="fa fa-shopping-cart"></i>
+            <b>1</b>
+          </span>
+        </h4>
+        <hr>
+        <h4>Order details</h4>
+
+        <p>{{consultation.title}}</p>
+
+        <hr>
+        <p>Subtotal
+          <span class="price">£{{consultation.price}}</span></p>
+   
+        <hr>
+        <p>Total <span class="price" style="color:black"><b>£{{consultation.price}}</b></span></p>
+      </div>
+    </div>
+  </div>
+   
+
+
+  
+
+
+
+{% endblock %}

@@ -23,6 +23,7 @@ from app.forms import ContactForm, AdminLogin
 
 from app.extensions import login_manager
 
+from .extensions import db
 
 
 
@@ -228,8 +229,8 @@ def callback():
     user = Author.query.filter_by(google_id=unique_id).first()
 
     if not user:
-        posts_db.session.add(author)
-        posts_db.session.commit()
+        db.session.add(author)
+        db.session.commit()
 
  
 

@@ -223,17 +223,14 @@ def callback():
 
 
     # Doesn't exist? Add to database
-    
-    user = Author.query.filter_by(google_id=unique_id).first()
-
-    if not user:
+    if not Author.query.filter_by(google_id=unique_id).first():
         db.session.add(author)
         db.session.commit()
 
  
 
     # Begin user session by logging the user in
-    login_user(user)
+    login_user(author)
 
    
 

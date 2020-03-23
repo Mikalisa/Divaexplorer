@@ -139,7 +139,7 @@ class Admins(db.Model, UserMixin):
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated
+        return True
 
 
     

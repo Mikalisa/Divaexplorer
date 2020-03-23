@@ -57,7 +57,7 @@ class Replies(db.Model):
 
 class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    google_id = db.Column(db.REAL)
+    google_id = db.Column(db.String(100))
     user_name = db.Column(db.String(32))
     user_email = db.Column(db.String(32))
     user_photo = db.Column(db.String(200))

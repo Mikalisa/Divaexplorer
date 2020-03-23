@@ -21,9 +21,7 @@ from app.email import send_email
 
 from app.forms import ContactForm, AdminLogin
 
-from app.extensions import login_manager
-
-from .extensions import db
+from app.extensions import login_manager, db
 
 
 

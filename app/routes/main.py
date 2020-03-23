@@ -237,7 +237,8 @@ def callback():
 
 
     # Send user back to homepage
-    return redirect(request.referrer)
+
+    return redirect(request.referrer or url_for('main.post'))
 
 
 

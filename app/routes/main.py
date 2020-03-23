@@ -223,7 +223,7 @@ def callback():
 
 
     # Doesn't exist? Add to database
-    if not Author.query.filter_by(author=current_user).first():
+    if not Author.query.filter_by(google_id=unique_id).one():
         db.session.add(author)
         db.session.commit()
 

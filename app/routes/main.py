@@ -233,13 +233,13 @@ def callback():
  
 
     # Begin user session by logging the user in
-    login_user(author)
+    login_user(user)
 
    
 
 
     # Send user back to homepage
-    return redirect(request.args.get('next'))
+    return redirect(redirect_url())
 
 
 

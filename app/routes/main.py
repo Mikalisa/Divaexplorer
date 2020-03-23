@@ -222,7 +222,7 @@ def callback():
     )
 
 
-    user = Author.query.filter_by(google_id=unique_id).one()
+    user = Author.query.filter_by(google_id=unique_id).first()
     # Doesn't exist? Add to database
     if user:
         # Begin user session by logging the user in

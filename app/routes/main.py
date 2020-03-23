@@ -19,7 +19,7 @@ from time import ctime
 
 from app.email import send_email
 
-from app.forms import ContactForm
+from app.forms import ContactForm, AdminLogin
 
 from app.extensions import login_manager
 
@@ -68,6 +68,7 @@ def post(post_id):
         return ('Error')
     elif current_user.is_authenticated:
         return render_template("show_post0.html", post=post, comments=comments, username=current_user.user_name, userimage=current_user.user_photo)
+
     return render_template("show_post_login.html", post=post, comments=comments)
     
 
@@ -223,9 +224,12 @@ def callback():
 
 
     # Doesn't exist? Add to database
-    #if unique_id != Author.query.filter_by(google_id=unique_id).one():
-    posts_db.session.add(author)
-    posts_db.session.commit()
+    
+    user = Author.query.filter_by(google_id=unique_id).first()
+
+    if not user:
+        posts_db.session.add(author)
+        posts_db.session.commit()
 
  
 
@@ -248,33 +252,26 @@ def callback():
 def admin_login():
     """Log user in"""
 
-    # Forget any user_id
-    session.clear()
+    
+    form = AdminLogin()
 
-    # User reached route via POST (as by submitting a form via POST)
-    if request.method == "POST":
-        if not request.form.get("username"):
-            return ("must provide username")
-        elif not request.form.get("password"):
-            return ("must provide password")
-
-        # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username",
-                          username=request.form.get("username"))
-
-        # Ensure username exists and password is correct
-        if rows[0]["hash"] != request.form.get("password"):
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('admin_login.html', form=form)
+        else:
+            user = Admins.query.filter_by(username=form.email.data, password=form.password.data).first()
+            if user:
+                login_user(user)
+                # Redirect user to home page
+                return redirect("/admin")
             return ("invalid username and/or password")
 
-
-        # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
-
-        # Redirect user to home page
-        
-        return redirect("/admin")
     else:
-    	return render_template("admin_login.html")
+        form = AdminLogin()
+        return render_template("admin_login.html", form=form)
+
+
 
 
 

@@ -2,7 +2,7 @@ from flask import Flask
 from flask_session import Session
 from .commands import create_tables
 from .extensions import db, mail
-from .models import Posts, Comment, Replies, Author, Consultation, Payment, Admins
+from .models import Posts, Comment, Replies, Author, Consultation, Payment, Admins, MyModelView
 
 from .routes.main import main
 
@@ -40,13 +40,13 @@ def create_app(config_file='settings.py'):
 
 
     admin = Admin(app)
-    admin.add_view(ModelView(Payment, db.session))
-    admin.add_view(ModelView(Posts, db.session))
-    admin.add_view(ModelView(Comment, db.session))
-    admin.add_view(ModelView(Replies, db.session))
-    admin.add_view(ModelView(Author, db.session))
-    admin.add_view(ModelView(Consultation, db.session))
-    admin.add_view(ModelView(Admins, db.session))
+    admin.add_view(MyModelView(Payment, db.session))
+    admin.add_view(MyModelView(Posts, db.session))
+    admin.add_view(MyModelView(Comment, db.session))
+    admin.add_view(MyModelView(Replies, db.session))
+    admin.add_view(MyModelView(Author, db.session))
+    admin.add_view(MyModelView(Consultation, db.session))
+    admin.add_view(MyModelView(Admins, db.session))
 
 
     

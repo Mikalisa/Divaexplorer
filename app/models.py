@@ -1,7 +1,7 @@
 from .extensions import db
 from datetime import datetime, timedelta
-
-
+from flask_admin.contrib.sqla import ModelView
+from flask_login import current_user, UserMixin
 
 ## classes for the database
 
@@ -118,11 +118,28 @@ class Payment(db.Model):
 
 
 
-class Admins(db.Model):
+class Admins(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100))
     password = db.Column(db.String(100))
 
+    def is_active(self):
+        return True
+
+    def get_id(self):
+        try:
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
 
     def __repr__(self):
         return f"Admins('{self.username}', '{self.last_name}')"
+
+
+
+class MyModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+
+    

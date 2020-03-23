@@ -19,20 +19,42 @@
 
 <body>
 
-  <form action="/admin_login" method="post">
+  
 
   <div class="login-card">
     <h1>Admin Log-in</h1><br>
-  <form>
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" name="login" class="login login-submit" value="login">
+
+
+    {% for message in form.email.errors %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.email.errors %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+
+    
+  <form action="{{ url_for('main.admin_login') }}" method=post>
+    
+            {{ form.hidden_tag() }}
+            
+            {{ form.email.label }}
+            {{ form.email }}
+
+
+            {{ form.password.label }}
+            {{ form.password }}
+
+            {{ form.submit }}
   </form>
+
+
+  
 
 
 </div>
 
-</form>
+
 
 <!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
 

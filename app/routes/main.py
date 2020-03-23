@@ -161,7 +161,7 @@ def login():
 
 
 # redirect to previous url
-def redirect_url(default='post'):
+def redirect_url(default='main.post'):
     return request.args.get('next') or \
            request.referrer or \
            url_for(default)

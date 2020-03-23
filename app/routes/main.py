@@ -222,17 +222,18 @@ def callback():
     )
 
 
+    user = Author.query.filter_by(google_id=unique_id).one()
     # Doesn't exist? Add to database
-    if not Author.query.filter_by(google_id=unique_id).one():
+    if user:
+        # Begin user session by logging the user in
+        login_user(user)
+        
+
+    else:
         db.session.add(author)
         db.session.commit()
-
- 
-
-    # Begin user session by logging the user in
-    login_user(author)
-
-   
+        login_user(author)
+        
 
 
     # Send user back to homepage

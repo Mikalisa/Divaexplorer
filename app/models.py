@@ -55,7 +55,7 @@ class Replies(db.Model):
         return f"Reply('{self.content}', '{self.timestamp}')"
 
 
-class Author(db.Model):
+class Author(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     google_id = db.Column(db.String(100))
     user_name = db.Column(db.String(32))

@@ -239,7 +239,7 @@ def callback():
 
 
     # Send user back to homepage
-    return redirect(redirect_url())
+    return ('Success')
 
 
 

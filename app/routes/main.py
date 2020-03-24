@@ -237,6 +237,8 @@ def callback():
 
 
     # Send user back to homepage
+
+    print("##############", request.args.get('next'))
     
     
 

@@ -238,7 +238,7 @@ def callback():
 
     # Send user back to homepage
 
-    referrer = request.headers.get("Referer")
+    referrer = request.referrer.endpoint
     print("#######################",referrer)
 
     return redirect(request.args.get("next") or url_for("main.post"))

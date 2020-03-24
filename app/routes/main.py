@@ -241,7 +241,7 @@ def callback():
     referrer = request.referrer.endpoint
     print("#######################",referrer)
 
-    return redirect(request.args.get("next") or url_for("main.post"))
+    return redirect(request.args.get('next', request.referrer) or None)
 
 
 

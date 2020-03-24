@@ -161,8 +161,8 @@ def login():
 
 
 # redirect to previous url
-def redirect_url_post(default='main.post'):
-    return request.args.get('next') or \
+def redirect_url(default='main.post'):
+    return request.args.get('main.next') or \
            request.referrer or \
            url_for(default)
 
@@ -240,7 +240,7 @@ def callback():
 
     
 
-    return redirect(request.args.get('next', request.referrer) or None)
+    return redirect(redirect_url)
 
 
 

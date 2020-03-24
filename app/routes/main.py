@@ -161,7 +161,7 @@ def login():
 
 
 # redirect to previous url
-def redirect_url(default='main.post'):
+def redirect_url_post(default='main.post'):
     return request.args.get('next') or \
            request.referrer or \
            url_for(default)
@@ -238,7 +238,10 @@ def callback():
 
     # Send user back to homepage
 
-    return redirect(request.referrer or url_for('main.post'))
+    referrer = request.headers.get("Referer")
+    print("#######################",referrer)
+
+    return redirect(request.args.get("next") or url_for("tracking.index"))
 
 
 
@@ -281,8 +284,8 @@ def add_comment():
         post_id = request.form.get('post_id')
         posts = Posts.query.get(post_id)
         comment = Comment(content=request.form.get('input_comment'), parent_id=post_id, author=current_user)
-        posts_db.session.add(comment)
-        posts_db.session.commit()
+        db.session.add(comment)
+        db.session.commit()
         flash('Your comment is now live!')
         return redirect(url_for('post', post_id=post_id))
 
@@ -297,8 +300,8 @@ def add_replay():
         
         reply = Replies(content=request.form.get('input_reply'), parent_id=comment_id, author=current_user)
         
-        posts_db.session.add(reply)
-        posts_db.session.commit()
+        db.session.add(reply)
+        db.session.commit()
         return redirect(url_for('post', post_id=post_id))
 
 

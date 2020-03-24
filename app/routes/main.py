@@ -237,11 +237,10 @@ def callback():
 
 
     # Send user back to homepage
-    print("###########",request.path)
-
+    
     
 
-    return redirect(redirect_url)
+    return redirect(redirect_url())
 
 
 

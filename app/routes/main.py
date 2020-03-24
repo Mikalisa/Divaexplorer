@@ -162,7 +162,7 @@ def login():
 
 # redirect to previous url
 def redirect_url(default='main.post'):
-    return request.args.get('main.next') or \
+    return request.args.get('next') or \
            request.referrer or \
            url_for(default)
 
@@ -237,6 +237,7 @@ def callback():
 
 
     # Send user back to homepage
+    print("###########",request.path)
 
     
 

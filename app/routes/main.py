@@ -61,6 +61,7 @@ def news():
 @main.route("/post/<int:post_id>", methods=["GET", "POST"])
 def post(post_id):
     post = Posts.query.filter_by(id=post_id).one()
+    session['POST_ID'] = post.id
     comments = post.comments
 
     if post == None:
@@ -160,12 +161,12 @@ def login():
 
 
 
+
 # redirect to previous url
 def redirect_url(default='main.post'):
     return request.args.get('next') or \
            request.referrer or \
            url_for(default)
-
 
 
 
@@ -238,11 +239,13 @@ def callback():
 
     # Send user back to homepage
 
-    print("##############", request.args.get('next'))
+    
+
+    post_id = session['POST_ID']
     
     
 
-    return redirect(redirect_url())
+    return redirect(url_for('main.post', post_id=post_id))
 
 
 

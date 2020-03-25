@@ -61,8 +61,10 @@ def news():
 @main.route("/post/<int:post_id>", methods=["GET", "POST"])
 def post(post_id):
     post = Posts.query.filter_by(id=post_id).one()
-    session['POST_ID'] = post.id
+    
     comments = post.comments
+
+    session['POST_ID'] = post.id
 
     if post == None:
         return ('Error')
@@ -238,14 +240,10 @@ def callback():
 
 
     # Send user back to homepage
-
-    
-
-    post_id = session['POST_ID']
     
     
 
-    return redirect(url_for('main.post', post_id=post_id))
+    return redirect(url_for('main.post', post_id=session['POST_ID']))
 
 
 

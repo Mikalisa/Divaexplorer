@@ -1,0 +1,237 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Posts
+{% endblock %}
+
+{% block main %}
+
+
+<pre>
+
+
+
+
+
+
+</pre>
+
+<form action="/archive" method="get">
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{post.title}}</h1>
+
+        <pre>
+        	
+        </pre>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a href="#">Sharon Williams</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{post.posted_time.strftime('%B %d, %Y')}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <!-- <img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""-->
+
+        
+
+        {% if post.youtube_link is not none %}
+
+        <iframe width="700" height="345" src="https://www.youtube.com/embed/{{post.youtube_link}}">
+        </iframe>
+        
+        {% else %}
+        
+
+       {% endif %}
+
+       <hr>
+
+        
+
+        <!-- Post Content -->
+    
+        <p style="white-space:pre-line;">{{post.content|safe}}</p>
+        	
+        
+        
+        
+
+
+        
+
+      
+</form>
+
+        <!-- Comments Form -->
+    {% if current_user.is_authenticated %}
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form action="/add_comment" method="POST">
+              <div class="form-group">
+              	<img style="width: 50px;
+                height: 50px;" class="d-flex mr-3 rounded-circle" src="{{current_user.user_photo}}" alt="">
+              	<p>Welcome {{current_user.user_name}} !!</p>
+              	<input type="hidden" name="post_id" value="{{post.id}}">
+                <textarea style="outline:medium;" placeholder="Add your comment here" class="form-control" name="input_comment" rows="3"></textarea>
+                
+              </div>
+              <button type="submit" class="btn btn-primary">Comment</button>
+               </form>
+            
+          </div>
+        </div>
+
+        {% else %}
+
+
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form action="/post" method="POST">
+              <div class="form-group">
+              	<input type="hidden" name="post_id" value="{{post.id}}">
+                <p>You need to login first!</p>
+                
+              </div>
+              <a class="button" href="{{url_for('blog.login', post_id=post.id)}}">Google Login</a>
+               </form>
+            
+          </div>
+        </div>
+
+
+
+        {% endif %}
+
+
+       {%for comment in comments.all()%}
+         
+
+        <!-- Single Comment -->
+        
+        {% if comment.replies.all() is none %}
+        <div class="media mb-4">
+          <img style="width: 50px;
+    height: 50px;" class="d-flex mr-3 rounded-circle" src="{{comment.author.user_photo}}" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment.author.user_name}}</h5>
+            <p>{{comment.timestamp.strftime('%B %d, %Y')}}</p>
+            {{comment.content}}
+          </div>
+        </div>
+
+
+        {% else %}
+
+
+       {% if current_user.is_authenticated %}
+        <!-- Comment with nested comments -->
+        <div class="media mb-4">
+          <img style="width: 50px;
+          height: 50px;" class="d-flex mr-3 rounded-circle" class="d-flex mr-3 rounded-circle" src="{{comment.author.user_photo}}" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment.author.user_name}}</h5>
+            
+           <p>{{comment.timestamp.strftime('%B %d, %Y')}}</p>
+
+           <pre></pre>
+
+            {{comment.content}} <br>
+            
+        <form action="/add_replay" method="POST">
+            <input class="form-control" type="textarea" name="input_reply"/>
+            
+            <input class="form-control" type="hidden" name="post_id" value="{{post.id}}"/>
+            <input class="form-control" type="hidden" name="comment_id" value="{{comment.id}}"/>
+            <p><button type="submit">Reply</button></p>
+        </form>
+        {% else %}
+
+        <div class="media mb-4">
+          <img style="width: 50px;
+          height: 50px;" class="d-flex mr-3 rounded-circle" class="d-flex mr-3 rounded-circle" src="{{comment.author.user_photo}}" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment.author.user_name}}</h5>
+            
+           <p>{{comment.timestamp.strftime('%B %d, %Y')}}</p>
+
+           <pre></pre>
+
+            {{comment.content}} <br>
+            
+            {% endif %}
+
+           {%for reply in comment.replies.all()%}
+            
+
+            <div class="media mt-4">
+              <img style="width: 50px;
+    height: 50px;" class="d-flex mr-3 rounded-circle" src="{{comment.author.user_photo}}" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">{{reply.author.user_name}}</h5>
+                <p>{{reply.timestamp.strftime('%B %d, %Y')}}</p>
+                <pre></pre>
+                {{reply.content}}
+              </div>
+            </div>
+          
+            {% endfor %}
+
+            {% endif %}
+
+
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+        
+
+
+        
+
+      
+      
+
+     
+
+
+
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+
+    
+
+        
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+
+  {% endblock %}

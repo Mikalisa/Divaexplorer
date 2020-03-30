@@ -27,3 +27,4 @@ SESSION_TYPE = "filesystem"
 
 # Whoosh Config
 WHOOSH_BASE = 'whoosh'
+

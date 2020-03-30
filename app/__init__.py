@@ -5,6 +5,8 @@ from .extensions import db, mail
 from .models import Posts, Comment, Replies, Author, Consultation, Payment, Admins, MyModelView
 
 from .routes.main import main
+from .routes.blog import blog
+from .routes.purchase import purchase
 
 from flask_admin import Admin
 
@@ -27,6 +29,8 @@ def create_app(config_file='settings.py'):
     login_manager.init_app(app)
     
     app.register_blueprint(main)
+    app.register_blueprint(blog)
+    app.register_blueprint(purchase)
 
 
     

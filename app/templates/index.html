@@ -6,19 +6,11 @@
 
 {% block main %}
 		
-<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="static/img/header-bg.jpg">
+<section id="home" data-parallax="scroll" data-image-src="static/img/header-bg.jpg">
 				<div class="overlay-bg overlay"></div>
 				<div class="container">
 					<div class="row fullscreen">
-						<div class="banner-content d-flex align-items-center col-lg-12 col-md-12">
-							<div ">
-                                   
-								<h2 style="color: #BF3EFF;">Just because you look good,
-								</h2> <h2 style="color: #BF5FFF;"> doesn't mean you feel good inside</h2>
-								
-								
-							</div>
-						</div>	
+							
 																	
 					</div>
 				</div>
@@ -35,7 +27,7 @@
                     <div class="col-md-12">
                         <div class="wel_header">
                             <h2>welcome to Divaexplorer</h2>
-                            <p>placeholderplaceholderplaceholderplaceholderplaceholder. Get our services like</p>
+                            <p>Get our services like: </p>
                         </div>
                     </div>
                 </div>
@@ -48,11 +40,11 @@
                         <div class="item">
                             <div class="single_item">
                                 <div class="item_list">
-                                    <a href="/consultaion_room"><div class="welcome_icon">
+                                    <a href="/consultation_room"><div class="welcome_icon">
                                         <i class="fa fa-calendar"></i>
                                     </div></a>
                                     <h4>consultation room</h4>
-                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</a></p>
+                                    <p>Book a consultation with me via Whatsapp or Skype. You can have 1hr counselling session or up to 40 minutes Tarot card reading. Please enquire for more information.</a></p>
                                 </div>
                             </div>
                         </div>
@@ -62,11 +54,11 @@
                         <div class="item">
                             <div class="single_item">
                                 <div class="item_list">
-                                    <a href="/news"> <div class="welcome_icon">
+                                    <a href="/blog"> <div class="welcome_icon">
                                         <i  class="fas fa-blog"></i>
                                     </div></a>
                                     <h4 >Blog</h4>
-                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
+                                    <p>Daily blogs in about my like and mental health recovery in general.</p>
                                 </div>
                             </div>
                         </div>
@@ -120,12 +112,12 @@
 					<div class="row">
 						{% for post in posts %}
 						<div class="col-lg-3 col-md-6 single-fashion">
-							<img class="img-fluid" src="static/img/asset/l3.jpg" alt="">
+							<img class="img-fluid" src="static/img/l3.jpg" alt="">
 
 				
 
 							<p class="date">{{post.posted_time.strftime('%d')}} {{post.posted_time.strftime('%B')[:3]}} {{post.posted_time.strftime('%Y')}}</p>
-							<h4><a href="{{url_for('main.post', post_id=post.id)}}">{{ post.title }}</a></h4>
+							<h4><a href="{{url_for('blog.post', post_id=post.id)}}">{{ post.title }}</a></h4>
 							<p style="width: 200px; white-space: nowrap; overflow:hidden;text-overflow: ellipsis;">
 								{{ post.content }}
 							</p>

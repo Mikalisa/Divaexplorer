@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Archive
+{% endblock %}
+
+{% block main %}
+		
+
+
+
+
+   
+
+  
+    <!-- Start post Area -->
+    <div style="width: 100%;  
+    min-height: 100vh;
+    
+    justify-content:left;
+    
+    padding: 150px;
+    background: transparent;
+    position: relative;
+    z-index: 1;"> 
+        <!-- Start post Area -->
+        <section class="post-area">
+            <div class="container">
+                <div class="row justify-content-center d-flex">
+                    <div class="col-lg-8">
+                        <div style="padding-bottom: 150px; padding-top: 150px;" class="post-lists search-list">
+                           
+                      {% for post in posts %}
+                            <div class="single-list flex-row d-flex">
+                                <div class="thumb">
+                                    <div class="date">
+                                        
+                                        
+                                        <span>{{post.posted_time.strftime('%B')[:3]}}</span><br>{{post.posted_time.strftime('%d')}}
+                                    </div>
+                                    <img src="static/img/l3.jpg" alt="">
+                                </div>
+                                
+                                <div class="detail">
+                                	
+
+                                	
+                              
+                                    <a href="{{url_for('blog.post', post_id=post.id)}}"><h4 class="pb-20">{{ post.title }}<br></h4>
+                                     </a>
+
+                                     
+
+                                    <p style="width: 500px; white-space:nowrap; overflow:hidden;text-overflow: ellipsis;">
+
+                                        {{ post.content }}
+
+                                    </p>
+
+                                    <p class="footer pt-20">
+                                   
+                               
+                                    </p>
+                                </div>
+
+                                
+                            </div>
+
+                            {% endfor %}
+                                      
+                                                                                                 
+                        </div>
+
+                        {% if prev_url %}
+                          
+                           <a href="{{ prev_url }}" style="background-color: #4CAF50;
+                                                           color: white; margin: 5px; padding: 5px;">&laquo; Previous</a>
+                                                           
+                       {% endif %}
+
+                        {% if next_url %}
+                         <a href="{{ next_url }}" style="background-color: #4CAF50;
+                         color: white; margin: 5px; padding: 5px;">Next &raquo;</a>
+                        {% endif %}
+                                                     
+                    </div>
+
+
+                    
+
+                    
+                
+                    <div class="col-lg-4 sidebar-area">
+                        
+
+                        <div class="single_widget about_widget">
+                           
+                            <h2 class="text-uppercase">Sharon Williams</h2>
+                            <p>
+                                My blog will be done via weekly inserts, and will be based on my story.
+                              I will be dissecting a formulation of my life, and tearing it apart using
+                                 the psychological theories, as to how any form of trauma, could cause issues
+                               later in life, and why we act the way we do.
+                            </p>
+                            <div class="social-link">
+                                <a href="https://www.facebook.com/pg/Divaexplorer.TVJ"><button class="btn"><i class="fab fa-facebook-f" aria-hidden="true"></i> Like</button></a>
+                                <a href="https://twitter.com/divaexplorer1"><button class="btn"><i class="fab fa-twitter" aria-hidden="true"></i> follow</button></a>
+                            </div>   
+                        </div>
+                    
+                      
+                         
+                                                                     
+                    </div>
+                </div>
+            </div>    
+        </section>
+        <!-- End post Area --> 
+        
+    </div>
+    <!-- End post Area -->
+
+
+
+{% endblock %} 
+    

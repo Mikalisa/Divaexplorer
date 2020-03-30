@@ -9,16 +9,14 @@ class Posts(db.Model):
     __searchable__  = ['title', 'content']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    content = db.Column(db.String(8000))
+    content = db.Column(db.TEXT(8000))
     youtube_link = db.Column(db.String(30))
     image_path = db.Column(db.String(100))
     posted_time = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     comments = db.relationship('Comment', backref='posts', cascade="all, delete-orphan", lazy='dynamic', primaryjoin="Posts.id == Comment.parent_id")
     
-
-
     def __repr__(self):
-        return f"Post('{self.title}', '{self.posted_time}')"
+        return '<Post {}>'.format(self.body)
 
 
 
@@ -91,7 +89,8 @@ class Author(db.Model, UserMixin):
 class Consultation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
-    title = db.Column(db.String(32))
+    title = db.Column(db.String(32), nullable=False)
+    desc = db.Column(db.String())
     
 
     def __repr__(self):
@@ -139,7 +138,7 @@ class Admins(db.Model, UserMixin):
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return True
+        return current_user.is_authenticated
 
 
     

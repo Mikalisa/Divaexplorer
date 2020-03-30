@@ -24,3 +24,12 @@ GOOGLE_DISCOVERY_URL = (
 
 PAYPAL_ACCOUNT = os.environ.get('PAYPAL_ACCOUNT')
 
+PAYMENT_SUCCESS = os.environ.get('PAYMENT_SUCCESS')
+
+IPN_LINK = os.environ.get('IPN_LINK')
+
+HOME_PAGE = os.environ.get('HOME_PAGE')
+
+
+POSTS_PER_PAGE = 3
+

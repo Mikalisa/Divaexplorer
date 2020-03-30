@@ -6,7 +6,7 @@ from flask_login import current_user, login_user
 from app.extensions import db
 from app.extensions import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_DISCOVERY_URL, PAYPAL_ACCOUNT, PAYMENT_SUCCESS, IPN_LINK, HOME_PAGE
 
-
+from werkzeug.datastructures import ImmutableOrderedMultiDict
 
 import requests
 

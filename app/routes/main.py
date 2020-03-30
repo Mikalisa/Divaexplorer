@@ -23,6 +23,8 @@ from app.forms import ContactForm, AdminLogin
 
 from app.extensions import login_manager, db
 
+from werkzeug.datastructures import ImmutableOrderedMultiDict
+
 
 
 main = Blueprint('main', __name__)

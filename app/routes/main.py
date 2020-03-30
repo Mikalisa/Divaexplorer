@@ -179,7 +179,7 @@ def ipn():
         db.session.commit()
 
         
-        send_email("Payment from the website", ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
+        send_email("Order Summary Txn: "+str(txn_id), ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
 
          """
 Divaexplorer Order Summary
@@ -191,18 +191,19 @@ Thank you for choosing Divaexplorer. Here's a summary of your order.
 Order Details
 
 Order Date: %s                                       Payment Source: Paypal
-Transaction ID: %s                                       Initial Charge: %s
-                                                         Final Cost: %s
-                                                         Item Type:
+Transaction ID: %s                                     Initial Charge: %s
 
-                                                         TOTAL:	%s
+Final Cost: %s
+
+
+TOTAL:	%s
 
 For any concern. Please Contact us via divaexplorer@divaexplorer-tvj.co.uk.
 
 
 Regards,
 Team Divaexplorer
-https://www.divaexplorer-tvj.co.uk/
+http://www.divaexplorer-tvj.co.uk/
 
 London, UK
 

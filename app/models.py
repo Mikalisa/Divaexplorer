@@ -138,7 +138,7 @@ class Admins(db.Model, UserMixin):
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return True
+        return current_user.is_authenticated
 
 
     

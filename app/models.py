@@ -16,7 +16,7 @@ class Posts(db.Model):
     comments = db.relationship('Comment', backref='posts', cascade="all, delete-orphan", lazy='dynamic', primaryjoin="Posts.id == Comment.parent_id")
     
     def __repr__(self):
-        return '<Post {}>'.format(self.body)
+        return '<Post {}>'.format(self.content)
 
 
 
@@ -138,7 +138,5 @@ class Admins(db.Model, UserMixin):
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated
-
-
+        return True
     

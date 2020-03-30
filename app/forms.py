@@ -1,7 +1,7 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import TextField, TextAreaField, SubmitField, validators
 
-class ContactForm(Form):
+class ContactForm(FlaskForm):
   name = TextField("Name", [validators.Required("Please enter your name.")])
   email = TextField("Email", [validators.Required("Please enter your email address."), validators.Email()])
   subject = TextField("Subject",  [validators.Required("Please enter a subject.")])
@@ -10,7 +10,7 @@ class ContactForm(Form):
 
 
 
-class AdminLogin(Form):
+class AdminLogin(FlaskForm):
   email = TextField("Email", [validators.Required("Please enter your email address."), validators.Email()])
   password = TextField("Password", [validators.Required("Please enter your password.")])
   submit = SubmitField("Log in")

@@ -9,7 +9,7 @@ class Posts(db.Model):
     __searchable__  = ['title', 'content']
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    content = db.Column(db.TEXT(8000))
+    content = db.Column(db.String(8000))
     youtube_link = db.Column(db.String(30))
     image_path = db.Column(db.String(100))
     posted_time = db.Column(db.DateTime, default=datetime.utcnow, index=True)
@@ -138,7 +138,7 @@ class Admins(db.Model, UserMixin):
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated
+        return True
 
 
     

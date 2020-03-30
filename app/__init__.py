@@ -14,6 +14,7 @@ from flask_admin.contrib.sqla import ModelView
 
 from .extensions import mail, login_manager
 
+import os
 
 
 
@@ -27,6 +28,8 @@ def create_app(config_file='settings.py'):
     mail.init_app(app)
 
     login_manager.init_app(app)
+    
+    app.secret_key = os.environ.get("SECRET_KEY")
     
     app.register_blueprint(main)
     app.register_blueprint(blog)

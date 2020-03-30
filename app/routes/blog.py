@@ -166,7 +166,6 @@ def add_comment():
         comment = Comment(content=request.form.get('input_comment'), parent_id=post_id, author=current_user)
         db.session.add(comment)
         db.session.commit()
-        flash('Your comment is now live!')
         return redirect(url_for('blog.post', post_id=post_id))
 
 

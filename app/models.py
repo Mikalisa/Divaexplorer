@@ -70,10 +70,10 @@ class Payment(db.Model):
 
     def __repr__(self):
         return f"Payment('{self.price}', '{self.title}')"
+        
 
 
-
-class Author(db.Model):
+class Author(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     google_id = db.Column(db.String(100))
     user_name = db.Column(db.String(32))

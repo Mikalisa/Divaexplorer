@@ -1,5 +1,5 @@
 from app.glogin import client, get_google_provider_cfg
-from app.models import Author, Consultation
+from app.models import Author, Consultation, Payment
 from flask import redirect, render_template, session, Blueprint, current_app, request, url_for
 from flask_login import current_user, login_user
 

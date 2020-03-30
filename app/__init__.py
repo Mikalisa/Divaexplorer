@@ -29,8 +29,6 @@ def create_app(config_file='settings.py'):
 
     login_manager.init_app(app)
     
-    app.secret_key = os.environ.get("SECRET_KEY")
-    
     app.register_blueprint(main)
     app.register_blueprint(blog)
     app.register_blueprint(purchase)

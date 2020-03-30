@@ -1,5 +1,5 @@
 import os
-
+from tempfile import mkdtemp
 
 # Database Config
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
@@ -19,7 +19,9 @@ MAIL_MAX_EMAILS = 5
 MAIL_ASCII_ATTACHMENTS = False
 
 
+# Session Config
 
+SESSION_TYPE = "filesystem"
 
 
 # Whoosh Config

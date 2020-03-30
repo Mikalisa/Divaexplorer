@@ -17,8 +17,11 @@ import json
 from flask_login import current_user
 
 
+import os
+
 
 purchase = Blueprint('purchase', __name__)
+
 
 
 @purchase.route("/consultation_room")

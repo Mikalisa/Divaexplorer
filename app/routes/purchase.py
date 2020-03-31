@@ -16,6 +16,8 @@ import json
 
 from flask_login import current_user
 
+from app.email import send_email
+
 
 import os
 

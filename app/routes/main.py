@@ -17,7 +17,7 @@ from app.models import Posts, Comment, Replies, Author, Consultation, Payment, A
 
 from time import ctime
 
-from app.email import send_email
+
 
 from app.forms import ContactForm, AdminLogin
 

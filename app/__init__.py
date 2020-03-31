@@ -14,7 +14,6 @@ from flask_admin.contrib.sqla import ModelView
 
 from .extensions import mail, login_manager
 
-import os
 
 
 

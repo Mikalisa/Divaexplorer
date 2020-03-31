@@ -122,6 +122,7 @@ def admin_login():
             if user:
                 login_user(user)
                 # Redirect user to Admin panel
+                
                 return redirect("/admin")
             return ("invalid username and/or password")
 

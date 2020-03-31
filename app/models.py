@@ -2,6 +2,7 @@ from .extensions import db
 from datetime import datetime, timedelta
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user, UserMixin
+from flask import session
 
 ## classes for the database
 
@@ -47,7 +48,6 @@ class Replies(db.Model):
     parent_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=False)
     
 
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
 
     def __repr__(self):
         return f"Reply('{self.content}', '{self.timestamp}')"
@@ -66,7 +66,7 @@ class Payment(db.Model):
     payment_status = db.Column(db.String(30))
     txn_id = db.Column(db.String(100))
 
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
+  
 
     def __repr__(self):
         return f"Payment('{self.price}', '{self.title}')"

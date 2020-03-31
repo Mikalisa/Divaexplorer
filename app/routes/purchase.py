@@ -178,6 +178,7 @@ def ipn():
         payer_email =  request.form.get('payer_email')
         unix = ctime()
         payment_date = request.form.get('payment_date')
+        item_type = request.form.get('item_name')
         username = request.form.get('first_name')
         last_name = request.form.get('last_name')
         payment_gross = request.form.get('mc_gross')
@@ -203,11 +204,16 @@ Thank you for choosing Divaexplorer. Here's a summary of your order.
 
 Order Details
 
-Order Date: %s                                       Payment Source: Paypal
-Transaction ID: %s                                     Initial Charge: %s
+Order Date: %s
+Payment Source: Paypal
+Transaction ID: %s
+User Email: %s
+Item name: %s
 
-Final Cost: %s
 
+
+
+Initial Charge: %s
 
 TOTAL:	%s
 
@@ -221,7 +227,7 @@ http://www.divaexplorer-tvj.co.uk/
 London, UK
 
 
-""" % (username + " " + last_name, unix, txn_id, "£"+payment_gross, "£"+payment_gross, "£"+payment_gross)
+""" % (username + " " + last_name, unix, txn_id, payer_email, item_type, "£"+payment_gross, "£"+payment_gross)
         
         )
         

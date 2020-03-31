@@ -48,6 +48,7 @@ class Replies(db.Model):
     parent_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=False)
     
 
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
 
     def __repr__(self):
         return f"Reply('{self.content}', '{self.timestamp}')"
@@ -86,7 +87,7 @@ class Author(db.Model, UserMixin):
 
     replies = db.relationship('Replies', backref='author', lazy='dynamic')
 
-    payment = db.relationship('Payment', backref='author', lazy='dynamic')
+
 
     
     def __repr__(self):

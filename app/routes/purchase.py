@@ -179,6 +179,7 @@ def ipn():
         unix = ctime()
         payment_date = request.form.get('payment_date')
         item_type = request.form.get('item_name')
+        item_count = request.form.get('item_count')
         username = request.form.get('first_name')
         last_name = request.form.get('last_name')
         payment_gross = request.form.get('mc_gross')
@@ -188,12 +189,12 @@ def ipn():
         txn_id = request.form.get('txn_id')
         
 
-        payment = Payment(payer_email=payer_email, unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
+        payment = Payment(payer_email=payer_email, unix=unix, payment_date=payment_date, item_type=item_type, item_count=item_count, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
         db.session.add(payment)
         db.session.commit()
 
         
-        send_email("Order Summary Txn: "+str(txn_id), ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
+        send_email("Order Summary Txn: "+str(txn_id), [payer_email, 'divaexplorer58@gmail.com'],
 
          """
 Divaexplorer Order Summary

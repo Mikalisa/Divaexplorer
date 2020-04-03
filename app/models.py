@@ -59,6 +59,8 @@ class Payment(db.Model):
     payer_email = db.Column(db.String(100))
     unix = db.Column(db.String(100))
     payment_date = db.Column(db.String(100))
+    item_type = db.Column(db.String(100))
+    item_count = db.Column(db.String(100))
     username = db.Column(db.String(100))
     last_name = db.Column(db.String(100))
     payment_gross = db.Column(db.Float(6,2))

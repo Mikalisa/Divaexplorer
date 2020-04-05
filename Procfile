@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app
+web: gunicorn --certfile=divaexplorer-tvj_co_uk.crt --keyfile=key.key wsgi:app

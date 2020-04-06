@@ -37,3 +37,4 @@ virtualenv==16.7.9
 Werkzeug==0.16.0
 Whoosh==2.7.4
 WTForms==2.2.1
+Flask-SSLify=0.1.5

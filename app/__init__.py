@@ -14,6 +14,8 @@ from flask_admin.contrib.sqla import ModelView
 
 from .extensions import mail, login_manager
 
+from flask_sslify import SSLify
+
 
 
 
@@ -29,6 +31,8 @@ def create_app(config_file='settings.py'):
     mail.init_app(app)
 
     login_manager.init_app(app)
+
+    sslify = SSLify(app)
     
     app.register_blueprint(main)
     app.register_blueprint(blog)

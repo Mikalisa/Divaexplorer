@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user, UserMixin
 from flask import session
+from wtforms.fields import TextAreaField
+
 
 ## classes for the database
 
@@ -17,7 +19,7 @@ class Posts(db.Model):
     comments = db.relationship('Comment', backref='posts', cascade="all, delete-orphan", lazy='dynamic', primaryjoin="Posts.id == Comment.parent_id")
     
     def __repr__(self):
-        return '<Post {}>'.format(self.content)
+        return f"Posts('{self.title}', '{self.content}')"
 
 
 
@@ -144,7 +146,9 @@ class Admins(db.Model, UserMixin):
 
 
 
+
 class MyModelView(ModelView):
+    form_overrides = dict(content=TextAreaField)
     def is_accessible(self):
         return True
     

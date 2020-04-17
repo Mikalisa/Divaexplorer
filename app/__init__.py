@@ -37,6 +37,8 @@ def create_app(config_file='settings.py'):
     app.register_blueprint(main)
     app.register_blueprint(blog)
     app.register_blueprint(purchase)
+    
+    
 
 
 

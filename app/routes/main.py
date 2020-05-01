@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, url_for, g, jsonify, Blueprint, current_app
 from flask_session import Session
-
+from sqlalchemy import desc
 from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin.contrib.sqla import ModelView
@@ -48,7 +48,7 @@ def after_request(response):
 
 @main.route("/")
 def index():
-    posts = Posts.query.order_by('posted_time desc').limit(4)
+    posts = Posts.query.order_by(desc(Posts.posted_time)).limit(4)
     return render_template("index.html", posts=posts)
 
 

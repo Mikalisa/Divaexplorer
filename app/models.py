@@ -145,6 +145,9 @@ class Admins(db.Model, UserMixin):
         return f"Admins('{self.username}', '{self.last_name}')"
 
 
+class About(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(80000))
 
 
 class MyModelView(ModelView):

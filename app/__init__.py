@@ -2,7 +2,7 @@ from flask import Flask
 from flask_session import Session
 from .commands import create_tables
 from .extensions import db, mail
-from .models import Posts, Comment, Replies, Author, Consultation, Payment, Admins, MyModelView
+from .models import Posts, Comment, Replies, Author, Consultation, Payment, Admins, MyModelView, About
 
 from .routes.main import main
 from .routes.blog import blog
@@ -14,7 +14,9 @@ from flask_admin.contrib.sqla import ModelView
 
 from .extensions import mail, login_manager
 
-from flask_sslify import SSLify
+#from flask_sslify import SSLify
+
+from flask_migrate import Migrate
 
 
 
@@ -28,11 +30,13 @@ def create_app(config_file='settings.py'):
     
     db.init_app(app)
 
+    migrate = Migrate(app,db)
+
     mail.init_app(app)
 
     login_manager.init_app(app)
 
-    sslify = SSLify(app)
+    #sslify = SSLify(app)
     
     app.register_blueprint(main)
     app.register_blueprint(blog)
@@ -61,6 +65,7 @@ def create_app(config_file='settings.py'):
     admin.add_view(MyModelView(Author, db.session))
     admin.add_view(MyModelView(Consultation, db.session))
     admin.add_view(MyModelView(Admins, db.session))
+    admin.add_view(MyModelView(About, db.session))
 
 
     

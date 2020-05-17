@@ -13,7 +13,7 @@ import json
 
 from app.extensions import db, login_manager, GOOGLE_DISCOVERY_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, PAYPAL_ACCOUNT
 
-from app.models import Posts, Comment, Replies, Author, Consultation, Payment, Admins
+from app.models import Posts, Comment, Replies, Author, Consultation, Payment, Admins, About
 
 from time import ctime
 
@@ -66,9 +66,12 @@ def search():
 
 
 
-@main.route("/about")
+@main.route("/about", methods=['GET'])
 def about():
-    return render_template("about.html")
+
+    about = About.query.one()
+
+    return render_template("about.html", about=about)
 
 
 @main.route("/contact_us", methods=['GET', 'POST'])

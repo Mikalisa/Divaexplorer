@@ -50,7 +50,6 @@ def post(post_id):
     if post == None:
         return ('Error')
     
-
     return render_template("post.html", post=post, comments=comments, current_user=current_user)
 
 
